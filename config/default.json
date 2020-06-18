@@ -1,0 +1,7 @@
+{
+  "mongoURI": "mongodb+srv://manlio:manlio@devconnector-txopz.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "mysecrettoken",
+  "githubClientId": "155e714566a510f39485",
+  "githubSecrets": "ebfe3852e7fead75c502fb711d33b9d9741e3b85",
+  "githubToken": "351f9329eeadd54824e1ff1c4f8a763efe78f0eb"
+}
