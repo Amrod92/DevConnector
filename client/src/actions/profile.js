@@ -1,4 +1,6 @@
 import axios from 'axios';
+import api from '../utils/api';
+
 import { setAlert } from './alert';
 
 import {
@@ -8,7 +10,8 @@ import {
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
   GET_PROFILES,
-  GET_REPOS
+  GET_REPOS,
+  NO_REPOS
 } from './types';
 
 // Get current users profile
@@ -67,7 +70,7 @@ export const getProfileById = (userId) => async (dispatch) => {
 // Get Github repos
 export const getGithubRepos = (username) => async (dispatch) => {
   try {
-    const res = await axios.get(`api/profile/github/${username}`);
+    const res = await api.get(`/profile/github/${username}`);
 
     dispatch({
       type: GET_REPOS,
@@ -75,8 +78,7 @@ export const getGithubRepos = (username) => async (dispatch) => {
     });
   } catch (err) {
     dispatch({
-      type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      type: NO_REPOS
     });
   }
 };
