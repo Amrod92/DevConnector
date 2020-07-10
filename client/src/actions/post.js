@@ -28,12 +28,12 @@ export const getPosts = () => async (dispatch) => {
 };
 
 //Add like
-export const addLike = (postId) => async (dispatch) => {
+export const addLike = (id) => async (dispatch) => {
   try {
-    const res = await axios.put(`/api/posts/like/${postId}`);
+    const res = await axios.put(`/api/posts/like/${id}`);
     dispatch({
       type: UPDATE_LIKES,
-      payload: { postId, likes: res.data }
+      payload: { id, likes: res.data }
     });
   } catch (err) {
     dispatch({
@@ -43,12 +43,12 @@ export const addLike = (postId) => async (dispatch) => {
   }
 };
 //remove like
-export const removeLike = (postId) => async (dispatch) => {
+export const removeLike = (id) => async (dispatch) => {
   try {
-    const res = await axios.put(`/api/posts/unlike/${postId}`);
+    const res = await axios.put(`/api/posts/unlike/${id}`);
     dispatch({
       type: UPDATE_LIKES,
-      payload: { postId, likes: res.data }
+      payload: { id, likes: res.data }
     });
   } catch (err) {
     dispatch({
@@ -114,18 +114,14 @@ export const getPost = (id) => async (dispatch) => {
 };
 
 //Add comment
-export const addComment = (postId, formData) => async (dispatch) => {
+export const addComment = (id, formData) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   };
   try {
-    const res = await axios.post(
-      `/api/posts/comment/${postId}`,
-      formData,
-      config
-    );
+    const res = await axios.post(`/api/posts/comment/${id}`, formData, config);
     dispatch({
       type: ADD_COMMENT,
       payload: res.data
@@ -140,9 +136,9 @@ export const addComment = (postId, formData) => async (dispatch) => {
   }
 };
 //Delete comment
-export const deleteComment = (postId, commentId) => async (dispatch) => {
+export const deleteComment = (id, commentId) => async (dispatch) => {
   try {
-    await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
+    await axios.delete(`/api/posts/comment/${id}/${commentId}`);
     dispatch({
       type: REMOVE_COMMENT,
       payload: commentId
